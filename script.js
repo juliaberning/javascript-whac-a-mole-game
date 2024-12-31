@@ -2,13 +2,14 @@ let currentMoleTile;
 let currentPlantTile
 let score = 0;
 let gameOver = false;
+let moleClicked = false;
 
 window.onload = function() {
     setGame();
 };   
 
 function setGame() {
-    // Set up the grid for the game bord in html
+    // Set up the grid for the game board in html
     for (let i = 0; i < 9; i++) {
         // Create a div element for each cell
         let tile = document.createElement("div");
@@ -47,6 +48,8 @@ function setMole() {
     }
     currentMoleTile = document.getElementById(number);
     currentMoleTile.appendChild(mole);
+    // Reset mole click state for the new mole appearance
+    moleClicked = false
 }
 
 function setPlant() {
@@ -73,10 +76,10 @@ function selectTile() {
     if (gameOver) {
         return;
     }
-    console.log(this.id);
-    if (this == currentMoleTile) {
+    if (this == currentMoleTile && !moleClicked) {
         score += 10;
         document.getElementById("score").innerText = score.toString();
+        moleClicked = true;
     } else if (this == currentPlantTile) {
         document.getElementById("score").innerText = "GAME OVER: " + score.toString();
         gameOver = true;
