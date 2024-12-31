@@ -78,7 +78,7 @@ function selectTile() {
     }
     if (this == currentMoleTile && !moleClicked) {
         score += 10;
-        document.getElementById("score").innerText = score.toString();
+        document.getElementById("score").innerText = "SCORE: " + score.toString();
         moleClicked = true;
     } else if (this == currentPlantTile) {
         document.getElementById("score").innerText = "GAME OVER: " + score.toString();
